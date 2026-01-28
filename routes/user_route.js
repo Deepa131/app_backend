@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const upload = require("../middleware/uploads");
+const {uploadImage} = require("../middleware/uploads");
 const { protect } = require("../middleware/auth");
 
 const {
@@ -13,7 +13,7 @@ const {
   uploadProfilePicture,
 } = require("../controllers/user_controller");
 
-router.post("/upload", upload.single("profilePicture"), uploadProfilePicture);
+router.post("/upload", uploadImage.single("profilePicture"), uploadProfilePicture);
 
 router.post("/", createUser);
 router.get("/", protect, getAllUsers); // Protected - prevents user enumeration
